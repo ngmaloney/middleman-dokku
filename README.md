@@ -17,10 +17,16 @@ And then execute:
 
     $ bundle
 
-### Step 2: Require gem in your Rakefile
+### Step 2: Require gem in your Rakefile and add asset compilation tasks
 
 ```ruby
 require 'middleman/dokku'
+
+namespace :assets do
+  task :precompile do
+    sh 'middleman build'
+  end
+end
 ```
 
 ## Usage
@@ -30,6 +36,9 @@ Run the provided rake command
 ```bash
 rake mm:dokku:generate
 ```
+
+This will generate a Procfile and a config.ru. Commit those files and deploy to
+Dokku.
 
 ## Development
 
